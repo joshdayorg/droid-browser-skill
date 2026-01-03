@@ -1,5 +1,15 @@
 # Browser Automation Skill for Factory Droids
 
+Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/skills/browser), with the following enhancements:
+
+- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window (no more tiny content area)
+- **Multi-tab support** - `tabs.js` to list, switch, and close tabs; all scripts operate on the active tab
+- **Page debugger** - `debug.js` captures console errors, JS exceptions, and failed network requests in one command
+- **Configurable window size** - `config.js` to customize for your monitor (default: right half of 27" Apple Studio Display)
+- **15-second debug default** - Captures more issues than the typical 5-second window
+
+---
+
 A powerful browser automation skill that gives Factory Droids the ability to control Chrome, debug web pages, and interact with websites using the Chrome DevTools Protocol (CDP).
 
 ## Features
