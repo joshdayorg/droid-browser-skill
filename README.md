@@ -1,19 +1,63 @@
 # Browser Automation Skill for Factory Droids
 
-Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/skills/browser), with the following enhancements:
+Give Droid the ability to see and control your browser.
+
+## What is this?
+
+This skill lets you ask [Droid](https://docs.factory.ai) to browse websites, debug pages, take screenshots, and interact with web apps - all through natural conversation.
+
+**New to Droid?** [Droid](https://docs.factory.ai) is an AI coding assistant that runs in your terminal. Install it at [factory.ai](https://www.factory.ai).
+
+## Quick Start
+
+**Prerequisites:** Node.js 18+, Google Chrome, [Droid CLI](https://docs.factory.ai)
+
+```bash
+# Install the skill
+git clone https://github.com/joshdayorg/droid-browser-skill.git /tmp/droid-browser-skill
+cp -r /tmp/droid-browser-skill/browser ~/.factory/skills/browser
+cd ~/.factory/skills/browser && npm install
+rm -rf /tmp/droid-browser-skill
+```
+
+**Try it:**
+
+1. Start Droid in your terminal: `droid`
+2. Say: *"Start the browser"*
+3. Say: *"Go to google.com"*
+
+That's it! Droid is now controlling Chrome.
+
+## What Can You Ask Droid?
+
+Once the browser skill is installed, just talk naturally:
+
+| You say... | Droid does... |
+|------------|---------------|
+| "Start the browser" | Launches Chrome |
+| "Go to example.com" | Navigates to the URL |
+| "What's wrong with this page?" | Debugs console errors, JS exceptions, network failures |
+| "Take a screenshot" | Captures the viewport |
+| "Show me the page structure" | Returns LLM-friendly DOM snapshot |
+| "Open a new tab and go to github.com" | Opens new tab, navigates |
+| "Switch to the google tab" | Switches between tabs |
+| "Click the login button" | Interacts with elements |
+| "Fill in the email field with test@example.com" | Types into inputs |
+
+## Enhancements
+
+Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/skills/browser), with:
 
 - **Page debugger** - `debug.js` captures console errors, JS exceptions, and failed network requests in one command
 - **LLM-friendly DOM snapshots** - `snapshot.js` returns an accessibility tree with element refs for easy interaction
 - **Multi-tab support** - `tabs.js` to list, switch, and close tabs; all scripts operate on the active tab
-- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window (no more tiny content area)
-- **Configurable window size** - `config.js` to customize for your monitor (default: right half of 27" Apple Studio Display)
+- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window
+- **Configurable window size** - `config.js` to customize for your monitor
 - **15-second debug default** - Captures more issues than the typical 5-second window
 
 ---
 
-A powerful browser automation skill that gives Factory Droids the ability to control Chrome, debug web pages, and interact with websites using the Chrome DevTools Protocol (CDP).
-
-## Features
+## Scripts Reference
 
 | Script | Description |
 |--------|-------------|
@@ -26,50 +70,28 @@ A powerful browser automation skill that gives Factory Droids the ability to con
 | `tabs.js` | List, switch, and close browser tabs |
 | `snapshot.js` | LLM-friendly DOM snapshot - accessibility tree with element refs |
 
-## Installation
+## Installation Options
 
 ### Option A: Personal Skills (follows you across projects)
 
 ```bash
-# Clone the repo
 git clone https://github.com/joshdayorg/droid-browser-skill.git /tmp/droid-browser-skill
-
-# Copy to personal skills directory
 cp -r /tmp/droid-browser-skill/browser ~/.factory/skills/browser
-
-# Install dependencies
 cd ~/.factory/skills/browser && npm install
-
-# Cleanup
 rm -rf /tmp/droid-browser-skill
 ```
 
 ### Option B: Project Skills (shared via git)
 
 ```bash
-# Clone the repo
 git clone https://github.com/joshdayorg/droid-browser-skill.git /tmp/droid-browser-skill
-
-# Copy to project skills directory
 mkdir -p .factory/skills
 cp -r /tmp/droid-browser-skill/browser .factory/skills/browser
-
-# Install dependencies
 cd .factory/skills/browser && npm install
-
-# Cleanup
 rm -rf /tmp/droid-browser-skill
-
-# Commit to your project
 git add .factory/skills/browser
 git commit -m "Add browser automation skill"
 ```
-
-## Requirements
-
-- **Node.js** 18+
-- **Google Chrome** installed
-- **Factory Droid CLI**
 
 ## Configuration
 
@@ -98,7 +120,7 @@ export const WINDOW = { width: 1280, height: 1440, x: 0, y: 0 };
 export const WINDOW = { width: 1024, height: 768, x: 100, y: 100 };
 ```
 
-## Usage
+## Detailed Usage
 
 ### Start Chrome
 
@@ -222,29 +244,6 @@ Interact with elements using their refs:
 
 # Fill a text field
 .factory/skills/browser/eval.js "document.querySelector('[data-ref=e35]').value = 'test@example.com'"
-```
-
-## Example Workflows
-
-### Debug a broken page
-```
-You: "Check what's wrong with https://myapp.com"
-Droid: runs debug.js, reports console errors, JS exceptions, failed API calls
-```
-
-### Test across multiple sites
-```
-You: "Open tabs for google.com, github.com, and twitter.com"
-Droid: opens 3 tabs with nav.js --new
-
-You: "Go to the github tab and get the page title"
-Droid: switches with tabs.js github, runs eval.js "document.title"
-```
-
-### Capture evidence
-```
-You: "Take a screenshot of the error state"
-Droid: runs screenshot.js, returns file path
 ```
 
 ## How It Works
