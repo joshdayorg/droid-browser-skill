@@ -2,6 +2,8 @@
 
 Give Droid the ability to see and control your browser.
 
+Built on [Factory's official browser skill](https://docs.factory.ai/cli/configuration/skills/browser) with added page debugging, multi-tab support, and LLM-friendly DOM snapshots.
+
 ## What is this?
 
 This skill lets you ask [Droid](https://docs.factory.ai) to browse websites, debug pages, take screenshots, and interact with web apps - all through natural conversation.
@@ -43,19 +45,6 @@ Once the browser skill is installed, just talk naturally:
 | "Switch to the google tab" | Switches between tabs |
 | "Click the login button" | Interacts with elements |
 | "Fill in the email field with test@example.com" | Types into inputs |
-
-## Enhancements
-
-Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/skills/browser), with:
-
-- **Page debugger** - `debug.js` captures console errors, JS exceptions, and failed network requests in one command
-- **LLM-friendly DOM snapshots** - `snapshot.js` returns an accessibility tree with element refs for easy interaction
-- **Multi-tab support** - `tabs.js` to list, switch, and close tabs; all scripts operate on the active tab
-- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window
-- **Configurable window size** - `config.js` to customize for your monitor
-- **15-second debug default** - Captures more issues than the typical 5-second window
-
----
 
 ## Scripts Reference
 
