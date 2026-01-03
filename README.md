@@ -7,6 +7,7 @@ Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/ski
 - **Page debugger** - `debug.js` captures console errors, JS exceptions, and failed network requests in one command
 - **Configurable window size** - `config.js` to customize for your monitor (default: right half of 27" Apple Studio Display)
 - **15-second debug default** - Captures more issues than the typical 5-second window
+- **LLM-friendly DOM snapshots** - `snapshot.js` returns an accessibility tree with element refs for easy interaction
 
 ---
 
@@ -23,6 +24,7 @@ A powerful browser automation skill that gives Factory Droids the ability to con
 | `pick.js` | Interactive visual element picker |
 | `debug.js` | Full page debugging - console errors, JS exceptions, failed network requests |
 | `tabs.js` | List, switch, and close browser tabs |
+| `snapshot.js` | LLM-friendly DOM snapshot - accessibility tree with element refs |
 
 ## Installation
 
@@ -195,6 +197,31 @@ export const WINDOW = { width: 1024, height: 768, x: 100, y: 100 };
 .factory/skills/browser/pick.js "Select the login button"
 # Click elements in browser, press Enter in terminal when done
 # Returns: tag, id, classes, text, selector for each picked element
+```
+
+### DOM Snapshot (LLM-friendly)
+
+```bash
+.factory/skills/browser/snapshot.js
+```
+
+Returns an accessibility tree optimized for AI understanding:
+
+```
+- button "SHOP" [ref=e8]
+- link "Learn More" [ref=e13]
+- textbox "Email" [ref=e35]
+- heading "Products" [level=2]
+```
+
+Interact with elements using their refs:
+
+```bash
+# Click a button
+.factory/skills/browser/eval.js "document.querySelector('[data-ref=e8]').click()"
+
+# Fill a text field
+.factory/skills/browser/eval.js "document.querySelector('[data-ref=e35]').value = 'test@example.com'"
 ```
 
 ## Example Workflows

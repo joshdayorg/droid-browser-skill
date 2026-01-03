@@ -82,26 +82,6 @@ Refreshes the page and captures:
 
 Use when: "What's wrong with this page?", "Why is this page blank?", "Why isn't my button working?"
 
-## DOM Snapshot (LLM-friendly)
-
-```bash
-.factory/skills/browser/snapshot.js
-```
-
-Returns an accessibility tree showing all interactive elements with refs:
-
-```
-- button "SHOP" [ref=e8]
-- link "Learn More" [ref=e13]
-- textbox "Email" [ref=e35]
-- heading "Products" [level=2]
-```
-
-Then interact using eval.js:
-```bash
-.factory/skills/browser/eval.js "document.querySelector('[data-ref=e8]').click()"
-```
-
 ## Manage Tabs
 
 ```bash
