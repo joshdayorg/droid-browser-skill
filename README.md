@@ -2,12 +2,12 @@
 
 Based on [Factory's browser skill](https://docs.factory.ai/cli/configuration/skills/browser), with the following enhancements:
 
-- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window (no more tiny content area)
-- **Multi-tab support** - `tabs.js` to list, switch, and close tabs; all scripts operate on the active tab
 - **Page debugger** - `debug.js` captures console errors, JS exceptions, and failed network requests in one command
+- **LLM-friendly DOM snapshots** - `snapshot.js` returns an accessibility tree with element refs for easy interaction
+- **Multi-tab support** - `tabs.js` to list, switch, and close tabs; all scripts operate on the active tab
+- **Full-size viewport** - Uses `defaultViewport: null` so the page fills the browser window (no more tiny content area)
 - **Configurable window size** - `config.js` to customize for your monitor (default: right half of 27" Apple Studio Display)
 - **15-second debug default** - Captures more issues than the typical 5-second window
-- **LLM-friendly DOM snapshots** - `snapshot.js` returns an accessibility tree with element refs for easy interaction
 
 ---
 
